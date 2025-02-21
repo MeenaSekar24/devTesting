@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebView Example</title>
+    <script>
+        function shareText() {
+            if (window.flutter_inappwebview) {
+                window.flutter_inappwebview.callHandler('shareFunction', 'Check out this awesome WebView!');
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Welcome to WebView</h1>
+    <p>This is a local HTML page embedded in the Dart file.</p>
+    <button onclick="shareText()">Share</button>
+</body>
+
+</html>
