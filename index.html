@@ -7,17 +7,30 @@
     <title>WebView Example</title>
     <script>
         function shareText() {
-            if (window.flutter_inappwebview) {
-                window.flutter_inappwebview.callHandler('shareFunction', 'Check out this awesome WebView!');
+            var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            if (isMobile) {
+                if (window.flutter_inappwebview) {
+                    window.flutter_inappwebview.callHandler('shareFunction', 'Check out this awesome WebView!');
+                }
+            } else {
+                var url = 'https://web.whatsapp.com/send?text=' + encodeURIComponent('Hello World!');
+                window.open(url, '_blank');
+
             }
         }
+
     </script>
 </head>
 
 <body>
     <h1>Welcome to WebView</h1>
     <p>This is a local HTML page embedded in the Dart file.</p>
-    <button onclick="shareText()">Share</button>
+    <h4>Web Share Functionality</h4>
+    <button onclick="shareText()">Share on WhatsApp Web</button>
+    <div style="height: 50px;">
+
+    </div>
+
 </body>
 
 </html>
