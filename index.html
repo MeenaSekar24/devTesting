@@ -5,18 +5,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebView Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            /* Space between buttons */
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
     <script>
-        function shareText() {
-
-
-
+        function FacebookShare() {
             if (window.flutter_inappwebview) {
-                window.flutter_inappwebview.callHandler('shareFunction', 'Check out this awesome WebView!');
+                window.flutter_inappwebview.callHandler('shFacebook', 'https://flutter.dev/');
 
             } else {
-                var url = 'https://web.whatsapp.com/send?text=' + encodeURIComponent('Hello World!');
-                window.open(url, '_blank');
+                const url = encodeURIComponent('https://flutter.dev/');
+                console.log(url);
+                const facebookShareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + url;
+                window.open(facebookShareUrl, '_blank');
             }
+        }
+
+        function LinkedId() {
+            if (window.flutter_inappwebview) {
+                window.flutter_inappwebview.callHandler('shLinkedIn', 'https://flutter.dev/');
+
+            } else {
+                const url = encodeURIComponent('https://flutter.dev/');
+                const linkedInShareUrl = "https://www.linkedin.com/shareArticle?mini=true&url=" + url;
+                window.open(linkedInShareUrl, '_blank');
+            }
+        }
+
+        function Twitter() {
+            if (window.flutter_inappwebview) {
+                window.flutter_inappwebview.callHandler('shTwitter', 'https://flutter.dev/');
+
+            } else {
+                const url = encodeURIComponent('https://flutter.dev/');
+                const twitterShareUrl = "https://twitter.com/intent/tweet?url=" + url;
+                window.open(twitterShareUrl, '_blank');
+            }
+        }
+
+        function Whatsapp() {
+            if (window.flutter_inappwebview) {
+                window.flutter_inappwebview.callHandler('shWhatsapp', 'https://flutter.dev/');
+
+            } else {
+                const url = encodeURIComponent('https://flutter.dev/');
+                var whatsappUrl = 'https://web.whatsapp.com/send?text=' + url;
+                window.open(whatsappUrl, '_blank');
+            }
+
         }
 
     </script>
@@ -26,9 +80,11 @@
     <h1>Welcome to WebView</h1>
     <p>This is a local HTML page embedded in the Dart file.</p>
     <h4>Web Share Functionality</h4>
-    <button onclick="shareText()">Share on WhatsApp</button>
-    <div style="height: 50px;">
-
+    <div class="button-container">
+        <button onclick="Whatsapp()">WhatsApp</button>
+        <button onclick="FacebookShare()">Facebook</button>
+        <button onclick="LinkedId()">LinkedIn</button>
+        <button onclick="Twitter()">X</button>
     </div>
 
 </body>
